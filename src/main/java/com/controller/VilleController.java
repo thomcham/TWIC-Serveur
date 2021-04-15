@@ -2,6 +2,7 @@ package com.controller;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.websocket.server.PathParam;
 
@@ -29,7 +30,7 @@ public class VilleController {
 			villeDB = factory.getImpl();
 			listeVilles = villeDB.getListeVille();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, "Error", e);
 		}
 		return listeVilles;
 	}
@@ -42,7 +43,7 @@ public class VilleController {
 			villeDB = factory.getImpl();
 			villeDB.addVille(v);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, "Error", e);
 		}
 	}
 
@@ -54,7 +55,7 @@ public class VilleController {
 			villeDB = factory.getImpl();
 			villeDB.delVille(code);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, "Error", e);
 		}
 	}
 
@@ -77,7 +78,7 @@ public class VilleController {
 			villeDB = factory.getImpl();
 			villeDB.uptdateVille(v);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, "Error", e);
 		}
 	}
 }
