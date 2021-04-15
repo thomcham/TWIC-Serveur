@@ -19,6 +19,8 @@ import com.dao.VilleDAOImpl;
 @RestController
 public class VilleController {
 
+	private VilleController() {}
+	
 	@RequestMapping(value = "/getVille", method = RequestMethod.GET)
 	@ResponseBody
 	public static List<Ville> getListeVille() {
