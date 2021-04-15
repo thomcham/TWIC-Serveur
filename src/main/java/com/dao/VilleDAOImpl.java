@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 import com.beans.Ville;
 
 public class VilleDAOImpl implements VilleDAO {
@@ -29,7 +28,7 @@ public class VilleDAOImpl implements VilleDAO {
 		preparedStatement.setString(1, code);
 
 		resultat = preparedStatement.executeQuery();
-		connexion.close();
+
 		while (resultat.next()) {
 			v.setnomCommune(resultat.getString("Nom_commune"));
 			v.setLigne(resultat.getString("Ligne_5"));
@@ -39,10 +38,12 @@ public class VilleDAOImpl implements VilleDAO {
 			v.setLatitude(resultat.getString("Latitude"));
 			v.setLongitude(resultat.getString("Longitude"));
 		}
+		preparedStatement.close();
+		resultat.close();
+		connexion.close();
 		return v;
 	}
-	
-	
+
 	@Override
 	public ArrayList<Ville> getListeVille() throws SQLException {
 		connexion = daoFactory.getConnection();
@@ -64,6 +65,8 @@ public class VilleDAOImpl implements VilleDAO {
 			v.setLongitude(resultat.getString("Longitude"));
 			listeVilles.add(v);
 		}
+		preparedStatement.close();
+		resultat.close();
 		connexion.close();
 
 		return listeVilles;
@@ -74,8 +77,9 @@ public class VilleDAOImpl implements VilleDAO {
 		connexion = daoFactory.getConnection();
 
 		PreparedStatement preparedStatement = null;
-		preparedStatement = connexion.prepareStatement("INSERT INTO `ville_france` (`Code_commune_INSEE`, `Nom_commune`, `Code_postal`, `Libelle_acheminement`, `Ligne_5`, `Latitude`, `Longitude`)"
-				+ "												VALUES (?, ?, ?, ?, ?, ?, ?)");
+		preparedStatement = connexion.prepareStatement(
+				"INSERT INTO `ville_france` (`Code_commune_INSEE`, `Nom_commune`, `Code_postal`, `Libelle_acheminement`, `Ligne_5`, `Latitude`, `Longitude`)"
+						+ "												VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 		preparedStatement.setString(1, v.getCodeCommune());
 		preparedStatement.setString(2, v.getnomCommune());
@@ -84,31 +88,32 @@ public class VilleDAOImpl implements VilleDAO {
 		preparedStatement.setString(5, v.getLigne());
 		preparedStatement.setString(6, v.getLatitude());
 		preparedStatement.setString(7, v.getLongitude());
-		
-		preparedStatement.execute();
-		connexion.close();
 
+		preparedStatement.execute();
+		preparedStatement.close();
+		connexion.close();
 	}
 
-	
 	public void delVille(String code) throws SQLException {
 		connexion = daoFactory.getConnection();
 
 		PreparedStatement preparedStatement = null;
-		preparedStatement = connexion.prepareStatement("DELETE FROM `ville_france` WHERE `ville_france`.`Code_commune_INSEE` = ?");
+		preparedStatement = connexion
+				.prepareStatement("DELETE FROM `ville_france` WHERE `ville_france`.`Code_commune_INSEE` = ?");
 		preparedStatement.setString(1, code);
 
 		preparedStatement.execute();
+		preparedStatement.close();
 		connexion.close();
-
 	}
-	
+
 	public void uptdateVille(Ville v) throws SQLException {
 		connexion = daoFactory.getConnection();
 
 		PreparedStatement preparedStatement = null;
-		preparedStatement = connexion.prepareStatement("UPDATE `ville_france` SET `Nom_commune` = ?, `Code_postal` = ?, `Libelle_acheminement` = ?, `Ligne_5` = ?, `Latitude` = ?, `Longitude` = ?"
-				+ "					 WHERE `ville_france`.`Code_commune_INSEE` = ?");
+		preparedStatement = connexion.prepareStatement(
+				"UPDATE `ville_france` SET `Nom_commune` = ?, `Code_postal` = ?, `Libelle_acheminement` = ?, `Ligne_5` = ?, `Latitude` = ?, `Longitude` = ?"
+						+ "					 WHERE `ville_france`.`Code_commune_INSEE` = ?");
 		preparedStatement.setString(1, v.getnomCommune());
 		preparedStatement.setString(2, v.getCodePostal());
 		preparedStatement.setString(3, v.getLibelleAcheminement());
@@ -118,12 +123,8 @@ public class VilleDAOImpl implements VilleDAO {
 		preparedStatement.setString(7, v.getCodeCommune());
 
 		preparedStatement.execute();
+		preparedStatement.close();
 		connexion.close();
-
 	}
-
-
-	
-	
 
 }
