@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+import com.conf.JDBCConf;
+
 public class DAOFactory {
 
 	private String url;
@@ -18,11 +21,11 @@ public class DAOFactory {
 
 	public static DAOFactory getInstance() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(JDBCConf.DRIVER);
 		} catch (ClassNotFoundException e) {
 
 		}
-		DAOFactory instance = new DAOFactory("jdbc:mysql://localhost:3306/maven", "root", "root");
+		DAOFactory instance = new DAOFactory(JDBCConf.HOST, JDBCConf.LOGIN, JDBCConf.PASSWORD);
 		return instance;
 	}
 
