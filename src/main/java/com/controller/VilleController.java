@@ -66,13 +66,6 @@ public class VilleController {
 		
 		DAOFactory factory = DAOFactory.getInstance();
 		VilleDAOImpl villeDB = null;
-		System.out.println(code);
-		System.out.println(nom);
-		System.out.println(codePostal);
-		System.out.println(libelle);
-		System.out.println(ligne);
-		System.out.println(latitude);
-		System.out.println(longitude);
 		Ville v = new Ville(code,nom,codePostal,libelle,ligne,latitude,longitude);
 		try {
 			villeDB = factory.getImpl();

@@ -3,7 +3,7 @@ package com.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import java.util.logging.Level;
 
 import com.conf.JDBCConf;
 
@@ -23,10 +23,9 @@ public class DAOFactory {
 		try {
 			Class.forName(JDBCConf.DRIVER);
 		} catch (ClassNotFoundException e) {
-
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, "Error", e);
 		}
-		DAOFactory instance = new DAOFactory(JDBCConf.HOST, JDBCConf.LOGIN, JDBCConf.PASSWORD);
-		return instance;
+		return new DAOFactory(JDBCConf.HOST, JDBCConf.LOGIN, JDBCConf.PASSWORD);
 	}
 
 	public Connection getConnection() throws SQLException {
