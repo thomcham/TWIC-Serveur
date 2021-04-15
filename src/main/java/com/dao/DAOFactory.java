@@ -25,7 +25,7 @@ public class DAOFactory {
 		} catch (ClassNotFoundException e) {
 			java.util.logging.Logger.getLogger("Test").log(Level.INFO, "Error", e);
 		}
-		return new DAOFactory(JDBCConf.HOST, JDBCConf.LOGIN, JDBCConf.PASSWORD);
+		return new DAOFactory(JDBCConf.HOST, JDBCConf.LOGIN, JDBCConf.MDP);
 	}
 
 	public Connection getConnection() throws SQLException {
