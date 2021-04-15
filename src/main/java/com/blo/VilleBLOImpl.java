@@ -14,7 +14,7 @@ public class VilleBLOImpl implements VilleBLO {
 	private VilleDAO villeDAO;
 
 	@Override
-	public ArrayList<Ville> getInfoVille() throws VilleException {
+	public ArrayList<Ville> getInfoVille() {
 		ArrayList<Ville> listeVille = new ArrayList<Ville>();
 
 		try {

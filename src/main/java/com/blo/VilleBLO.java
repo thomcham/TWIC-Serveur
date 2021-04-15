@@ -6,6 +6,6 @@ import com.beans.Ville;
 
 public interface VilleBLO {
 
-	public ArrayList<Ville> getInfoVille() throws VilleException;
+	public ArrayList<Ville> getInfoVille();
 	
 }

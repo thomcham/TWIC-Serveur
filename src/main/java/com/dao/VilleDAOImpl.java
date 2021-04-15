@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 
 import com.beans.Ville;
-import com.dao.DAOFactory;
 
 public class VilleDAOImpl implements VilleDAO {
 
