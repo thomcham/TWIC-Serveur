@@ -21,6 +21,8 @@ public class VilleController {
 
 	private VilleController() {}
 	
+	private static String error = "Error";
+	
 	@RequestMapping(value = "/getVille", method = RequestMethod.GET)
 	@ResponseBody
 	public static List<Ville> getListeVille() {
@@ -32,7 +34,7 @@ public class VilleController {
 			villeDB = factory.getImpl();
 			listeVilles = villeDB.getListeVille();
 		} catch (SQLException e) {
-			java.util.logging.Logger.getLogger("Test").log(Level.INFO, "Error", e);
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		}
 		return listeVilles;
 	}
@@ -45,7 +47,7 @@ public class VilleController {
 			villeDB = factory.getImpl();
 			villeDB.addVille(v);
 		} catch (SQLException e) {
-			java.util.logging.Logger.getLogger("Test").log(Level.INFO, "Error", e);
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		}
 	}
 
@@ -57,7 +59,7 @@ public class VilleController {
 			villeDB = factory.getImpl();
 			villeDB.delVille(code);
 		} catch (SQLException e) {
-			java.util.logging.Logger.getLogger("Test").log(Level.INFO, "Error", e);
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		}
 	}
 
@@ -73,7 +75,7 @@ public class VilleController {
 			villeDB = factory.getImpl();
 			villeDB.uptdateVille(v);
 		} catch (SQLException e) {
-			java.util.logging.Logger.getLogger("Test").log(Level.INFO, "Error", e);
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		}
 	}
 }

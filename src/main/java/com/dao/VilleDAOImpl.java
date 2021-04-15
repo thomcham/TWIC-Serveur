@@ -13,7 +13,7 @@ public class VilleDAOImpl implements VilleDAO {
 
 	private DAOFactory daoFactory;
 	private Connection connexion;
-	private static String ERROR = "Error";
+	private static String error = "Error";
 
 	VilleDAOImpl(DAOFactory daoFactory) throws SQLException {
 		this.daoFactory = daoFactory;
@@ -43,7 +43,7 @@ public class VilleDAOImpl implements VilleDAO {
 				v.setLongitude(resultat.getString("Longitude"));
 			}
 		} catch (SQLException e) {
-			java.util.logging.Logger.getLogger("Test").log(Level.INFO, ERROR, e);
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		} finally {
 			handleErrors2(resultat, preparedStatement, connexion);
 		}
@@ -73,7 +73,7 @@ public class VilleDAOImpl implements VilleDAO {
 				listeVilles.add(v);
 			}
 		} catch (SQLException e) {
-			java.util.logging.Logger.getLogger("Test").log(Level.INFO, ERROR, e);
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		} finally {
 			handleErrors2(resultat, preparedStatement, connexion);
 		}
@@ -100,7 +100,7 @@ public class VilleDAOImpl implements VilleDAO {
 			preparedStatement.execute();
 
 		} catch (SQLException e) {
-			java.util.logging.Logger.getLogger("Test").log(Level.INFO, ERROR, e);
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		} finally {			
 			handleErrors1(preparedStatement,connexion);
 		}
@@ -110,7 +110,7 @@ public class VilleDAOImpl implements VilleDAO {
 		try {
 			connexion = daoFactory.getConnection();
 		} catch (SQLException e) {
-			java.util.logging.Logger.getLogger("Test").log(Level.INFO, ERROR, e);
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		}
 
 		PreparedStatement preparedStatement = null;
@@ -121,7 +121,7 @@ public class VilleDAOImpl implements VilleDAO {
 			preparedStatement.execute();
 
 		} catch (SQLException e) {
-			java.util.logging.Logger.getLogger("Test").log(Level.INFO, ERROR, e);
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		} finally {			
 			handleErrors1(preparedStatement,connexion);
 		}
@@ -143,7 +143,7 @@ public class VilleDAOImpl implements VilleDAO {
 			preparedStatement.setString(6, v.getLongitude());
 			preparedStatement.setString(7, v.getCodeCommune());
 		} catch (SQLException e) {
-			java.util.logging.Logger.getLogger("Test").log(Level.INFO, ERROR, e);
+			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		} finally {
 			handleErrors1(preparedStatement,connexion);
 		}
@@ -159,7 +159,7 @@ public class VilleDAOImpl implements VilleDAO {
 			try {
 				connexion.close();
 			} catch (SQLException e) {
-				java.util.logging.Logger.getLogger("Test").log(Level.INFO, ERROR, e);
+				java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 			}
 		}
 	}
@@ -179,7 +179,7 @@ public class VilleDAOImpl implements VilleDAO {
 				try {
 					connexion.close();
 				} catch (SQLException e) {
-					java.util.logging.Logger.getLogger("Test").log(Level.INFO, ERROR, e);
+					java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 				}
 			}
 		}
