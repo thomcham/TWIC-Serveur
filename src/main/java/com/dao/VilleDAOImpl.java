@@ -25,7 +25,8 @@ public class VilleDAOImpl implements VilleDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultat = null;
 		try {
-			preparedStatement = connexion.prepareStatement("SELECT * FROM ville_france WHERE `Code_commune_INSEE` = ?;");
+			preparedStatement = connexion
+					.prepareStatement("SELECT * FROM ville_france WHERE `Code_commune_INSEE` = ?;");
 			preparedStatement.setString(1, code);
 
 			resultat = preparedStatement.executeQuery();
@@ -41,10 +42,26 @@ public class VilleDAOImpl implements VilleDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			resultat.close();
-			preparedStatement.close();
-			connexion.close();
+		} finally {
+			try {
+				if (resultat != null) {
+					resultat.close();
+				}
+			} finally {
+				try {
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					}
+				} finally {
+					try {
+						if (connexion != null) {
+							connexion.close();
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 
 		return v;
@@ -74,9 +91,25 @@ public class VilleDAOImpl implements VilleDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			resultat.close();
-			preparedStatement.close();
-			connexion.close();
+			try {
+				if (resultat != null) {
+					resultat.close();
+				}
+			} finally {
+				try {
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					}
+				} finally {
+					try {
+						if (connexion != null) {
+							connexion.close();
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 
 		return listeVilles;
@@ -103,8 +136,19 @@ public class VilleDAOImpl implements VilleDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			preparedStatement.close();
-			connexion.close();
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} finally {
+				try {
+					if (connexion != null) {
+						connexion.close();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
@@ -117,15 +161,27 @@ public class VilleDAOImpl implements VilleDAO {
 
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = connexion.prepareStatement("DELETE FROM `ville_france` WHERE `ville_france`.`Code_commune_INSEE` = ?");
+			preparedStatement = connexion
+					.prepareStatement("DELETE FROM `ville_france` WHERE `ville_france`.`Code_commune_INSEE` = ?");
 			preparedStatement.setString(1, code);
 			preparedStatement.execute();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			preparedStatement.close();
-			connexion.close();
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} finally {
+				try {
+					if (connexion != null) {
+						connexion.close();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
@@ -146,9 +202,20 @@ public class VilleDAOImpl implements VilleDAO {
 			preparedStatement.setString(7, v.getCodeCommune());
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			preparedStatement.close();
-			connexion.close();
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} finally {
+				try {
+					if (connexion != null) {
+						connexion.close();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
 	}
