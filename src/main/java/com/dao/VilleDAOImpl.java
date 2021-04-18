@@ -142,6 +142,8 @@ public class VilleDAOImpl implements VilleDAO {
 			preparedStatement.setString(5, v.getLatitude());
 			preparedStatement.setString(6, v.getLongitude());
 			preparedStatement.setString(7, v.getCodeCommune());
+			preparedStatement.execute();
+
 		} catch (SQLException e) {
 			java.util.logging.Logger.getLogger("Test").log(Level.INFO, error, e);
 		} finally {
